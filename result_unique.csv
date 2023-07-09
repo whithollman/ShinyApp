@@ -1,0 +1,25 @@
+"gender","parental_level_of_education","math_score","reading_score","writing_score","total_score","lunch","n"
+"female","associate's degree",68,75.6,76.7,220.3,"free/reduced",72
+"female","associate's degree",68,75.6,76.7,220.3,"standard",132
+"female","bachelor's degree",68.4,76.2,78.2,222.8,"free/reduced",37
+"female","bachelor's degree",68.4,76.2,78.2,222.8,"standard",68
+"female","high school",61.7,71.4,70,203.1,"free/reduced",79
+"female","high school",61.7,71.4,70,203.1,"standard",136
+"female","master's degree",67,73.9,75.5,216.5,"free/reduced",25
+"female","master's degree",67,73.9,75.5,216.5,"standard",50
+"female","some college",65.3,73.8,73.6,212.8,"free/reduced",74
+"female","some college",65.3,73.8,73.6,212.8,"standard",150
+"female","some high school",61.3,71.4,70.3,203,"free/reduced",53
+"female","some high school",61.3,71.4,70.3,203,"standard",124
+"male","associate's degree",72.6,69.7,67.5,209.8,"free/reduced",72
+"male","associate's degree",72.6,69.7,67.5,209.8,"standard",132
+"male","bachelor's degree",71.3,67.5,66.5,205.3,"free/reduced",37
+"male","bachelor's degree",71.3,67.5,66.5,205.3,"standard",68
+"male","high school",69.7,66.6,63,199.3,"free/reduced",79
+"male","high school",69.7,66.6,63,199.3,"standard",136
+"male","master's degree",74.2,70.4,68.8,213.4,"free/reduced",25
+"male","master's degree",74.2,70.4,68.8,213.4,"standard",50
+"male","some college",71.6,68.4,65.7,205.7,"free/reduced",74
+"male","some college",71.6,68.4,65.7,205.7,"standard",150
+"male","some high school",66.8,62.9,60.7,190.5,"free/reduced",53
+"male","some high school",66.8,62.9,60.7,190.5,"standard",124

@@ -1,0 +1,32 @@
+"parental_level_of_education","race_ethnicity","math_score","reading_score","writing_score","total_score","gender_female","gender_male"
+"associate's degree","group A",65.7,67.6,67.4,200.7,101,103
+"associate's degree","group B",68.8,73.5,72.6,214.9,101,103
+"associate's degree","group C",66.6,70.6,69.9,207.2,101,103
+"associate's degree","group D",73.2,74.1,73.7,221,101,103
+"associate's degree","group E",79.2,76.8,76.4,232.4,101,103
+"bachelor's degree","group A",66.5,74.5,75.5,216.5,52,53
+"bachelor's degree","group B",70.3,72.5,72.3,215.1,52,53
+"bachelor's degree","group C",66.5,67,68.2,201.7,52,53
+"bachelor's degree","group D",69.4,73.8,73.4,216.6,52,53
+"bachelor's degree","group E",79.1,78.2,79.4,236.7,52,53
+"high school","group A",65.7,72.6,69.3,207.6,116,99
+"high school","group B",61.4,67.1,64.3,192.7,116,99
+"high school","group C",63,66.9,63.2,193.2,116,99
+"high school","group D",65,68.3,68.4,201.6,116,99
+"high school","group E",76.6,76.7,74.4,227.7,116,99
+"master's degree","group A",69.8,72,71.5,213.2,33,42
+"master's degree","group B",69.5,69.1,68.4,206.9,33,42
+"master's degree","group C",68.8,72.8,72.7,214.3,33,42
+"master's degree","group D",72.9,72.8,74.3,220,33,42
+"master's degree","group E",74.8,72.2,69.6,216.5,33,42
+"some college","group A",67.4,68.1,65.2,200.7,106,118
+"some college","group B",63,67.3,65.6,195.9,106,118
+"some college","group C",65.9,69.5,67.4,202.7,106,118
+"some college","group D",69.4,70.8,71.2,211.4,106,118
+"some college","group E",80.7,79.7,77.8,238.2,106,118
+"some high school","group A",62.7,65.9,66.1,194.7,84,93
+"some high school","group B",55.5,62.2,58.7,176.5,84,93
+"some high school","group C",65,66.3,63.7,195,84,93
+"some high school","group D",65.1,67.7,67.9,200.7,84,93
+"some high school","group E",72.7,73.3,71,217.1,84,93
+"Total","-",2060.2,2129.9,2099.5,6289.4,2460,2540
