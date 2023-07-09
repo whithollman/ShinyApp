@@ -1,0 +1,158 @@
+---
+title: "SAT Summary"
+---
+
+title: "Sat Student Performance" author: "Whitney Hollman" format: html: code-fold: true editor: visual ---
+
+## Data(source: kaggle.com)
+
+##### **Description: This data set contains information on the performance of high school students in mathematics, including their grades and demographic information. The data was collected from three high schools in the United States.**
+
+```{r, packages used}
+library(tidyverse)
+library(janitor)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(ggthemes)
+library(fastDummies)
+library(here)
+```
+
+## Brief Goal Overview:
+
+My goal in the web application is for Users to be able to choose a score from one of the three tests. Math, Reading, or Writing and see through the reactive plots how a particular score in one of these subjects is influenced by the student's lunch habits and their parents level of education.
+
+```{r, data import for guarto doc only}
+exams <- read.csv(here("/Volumes/palang/SAT_performance/exams.csv"))
+```
+
+## Data Breakdown:
+
+```{r, data downloaded from}
+"kaggle source: <http://roycekimmons.com/tools/generated_data/exams>"
+```
+
+"This data set could be used for various research questions related to education, such as examining the impact of parental education or test preparation courses on student performance. It could also be used to develop machine learning models to predict student performance based on demographic and other factors." ...
+
+Race and Ethnicity in this data set was purposefully left ambiguous. I have chosen to leave this ambiguous column out of my analysis, because I did not find it to have a meaningful effect on the data summary. I acknowledge the author's reasons for doing this, and therefore choose to delete it from my analysis.
+
+## The Data:
+
+[Columns:]{.underline}
+
+1.  **Gender:** The gender of the student (male/female)
+
+2.  **Race/ethnicity:** The student's racial or ethnic background (Asian, African-American, Hispanic, etc.)
+
+3.  **Parental level of education:** The highest level of education attained by the student's parent(s) or guardian(s)
+
+4.  **Lunch:** Whether the student receives free or reduced-price lunch (yes/no)
+
+5.  **Test preparation course:** Whether the student completed a test preparation course (yes/no)
+
+6.  **Math score:** The student's score on a standardized mathematics test
+
+7.  **Reading score:** The student's score on a standardized reading test
+
+8.  **Writing score:** The student's score on a standardized writing test
+
+### Quick Analysis of various predictive variables:
+
+```{r, clean the data set}
+exams <- exams |>
+  clean_names()
+```
+
+```{r, dummy variables for lunch category to help with analysis }
+
+exams <-
+  dummy_cols(exams, select_columns = "lunch", 
+             remove_selected_columns = FALSE)
+exams
+```
+
+One of the more interesting aspects to this data set, compared to other student test performance data is that one of the predictive variables for this data set is what *type* of lunch each student had, and did that have an effect on the students later performance scores...?
+
+```{r, lunch summary}
+ lunch_summary <- exams |>
+    group_by(parental_level_of_education) |>
+    count(lunch)
+ lunch_summary
+```
+
+There are more than twice the amount of standard lunch's served to these students than free or reduced cost lunches.
+
+```{r}
+selected <- exams |>
+  filter(lunch == "standard")
+nrow(selected)
+```
+
+```{r}
+selected <- exams |>
+  filter(lunch == "free/reduced")
+nrow(selected)
+```
+
+Next we will look at if performance can be associated with the type of lunch. First summary of the test scores, by gender
+
+```{r}
+summary_standard <- exams |>
+  count(parental_level_of_education, gender, wt = lunch_standard)
+summary_standard
+```
+
+```{r}
+summary_free <- exams |>
+  count(parental_level_of_education, gender, 
+        wt = `lunch_free/reduced`)
+summary_free
+```
+
+```{r, summary of mean scores by two variables}
+ total_score_sum <- exams |>
+   group_by(gender, parental_level_of_education) |>
+   summarize(math_score = mean(math_score),
+            reading_score = mean(reading_score),
+            writing_score = mean(writing_score),
+            total_score = sum(math_score + 
+                                reading_score + writing_score),
+           .groups = "drop") |>
+  adorn_rounding()
+exams
+```
+
+The above table shows average grade scores along with the gender and various levels of the parents and their over all achieved level of education.
+
+```{r}
+total_score_sum |>
+ggplot(mapping = aes(x = total_score, 
+                     y = parental_level_of_education, 
+           color = gender)) +
+  theme(axis.text.y = element_text(angle = 45, hjust = 1)) +
+  geom_point() +
+  geom_line() +
+  labs(y = "estimated score effects")
+```
+
+Looking at the ggplot above you can see that females score higher than males overall in the SAT. The higher female scores also have parents who have earned and completed some type of degree, or some college. Upper education as far as this data set is concerned. For the males the highest achieving scores on the SAT were from males who had parents that had specifically received their masters degree.
+
+```{r, join both summary to create fuller picture}
+result <- left_join(total_score_sum, lunch_summary, 
+                    by = "parental_level_of_education") 
+```
+
+This final data frame shows you how each were influenced by, 'parental education, and lunch type', and how that may influence the student's score. Gender also seems to play a roll in direct connection to the parental education level.
+
+```{r, making each row uniuqe and by type'lunch'}
+result_unique <- unique(result[ , c('gender', 'parental_level_of_education', 'math_score', 'reading_score', 'writing_score', 'total_score', 'lunch', 'n')] )
+```
+
+```{r, data set unique_result}
+write.csv(result_unique, "result_unique.csv", row.names = FALSE)
+```
+
+## Summary
+
+Biggest predictor factors in overall performance, where parental level of education and the gender of the student. Highest individual scores were not as easy to predict as more variables seem on have an effect on the test scores.
